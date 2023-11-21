@@ -40,4 +40,4 @@ def test__repr__():
 
 def test_str__():
     item1 = Item("Смартфон", 10000, 20)
-    assert str(item1) == 'Смартфон, 10000, 20'
+    assert str(item1) == "Смартфон, 10000, 20"

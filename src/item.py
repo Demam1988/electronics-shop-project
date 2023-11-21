@@ -26,10 +26,10 @@ class Item:
 
 
     def __repr__(self):
-        return f"{self.__class__.__name__}('{self.__name}','{self.price}','{self.quantity}')"
+        return f"{self.__class__.__name__}('{self.__name}', {self.price}, {self.quantity})"
 
     def __str__(self):
-        return f'{self.name}, {self.price}, {self.quantity}'
+        return f'{self.name}'
 
 
     @property
@@ -75,8 +75,6 @@ class Item:
         return int(float(str_num))
 
 
-#st = Item("appl", 10000, 5)
-print(repr(Item))
 
 
 
