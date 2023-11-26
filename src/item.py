@@ -74,6 +74,22 @@ class Item:
     def string_to_number(str_num):
         return int(float(str_num))
 
+    def __add__(self, other):
+        """ Возвращает сумму двух экземпляров """
+
+        if self.validate(other):
+            return self.quantity + other.quantity
+
+    @classmethod
+    def validate(cls, obj):
+        """ Проверка на соответствие классу. """
+
+        if not isinstance(obj, Item):
+            raise TypeError('Объект должен быть экземпляром класса '
+                            'Item или Phone!')
+        return True
+
+
 
 
 
