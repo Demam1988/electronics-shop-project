@@ -3,22 +3,17 @@ import os
 
 
 class Item:
-    """
-    Класс для представления товара в магазине.
-    """
+    """Класс для представления товара в магазине."""
+
     pay_rate = 1.0
     all = []
     PATH_DIR = os.path.abspath('../src/')
     PATH_CSV = os.path.join(PATH_DIR, 'items.csv')
 
     def __init__(self, name: str, price: float, quantity: int) -> None:
-        """
-        Создание экземпляра класса item.
+        """Создание экземпляра класса item.:param name: Название товара. :param price: Цена за единицу товара. :param
+        quantity: Количество товара в магазине."""
 
-        :param name: Название товара.
-        :param price: Цена за единицу товара.
-        :param quantity: Количество товара в магазине.
-        """
         self.__name = name
         self.price = price
         self.quantity = quantity
@@ -46,19 +41,15 @@ class Item:
 
 
     def calculate_total_price(self) -> float:
-        """
-        Рассчитывает общую стоимость конкретного товара в магазине.
+        """Рассчитывает общую стоимость конкретного товара в магазине.:return: Общая стоимость товара."""
 
-        :return: Общая стоимость товара.
-        """
         total_cost = self.price * self.quantity
         return total_cost
 
 
     def apply_discount(self) -> None:
-        """
-       Применяет установленную скидку для конкретного товара.
-       """
+        """Применяет установленную скидку для конкретного товара."""
+
         discoun = self.price * self.pay_rate
         self.price = discoun
 
@@ -88,9 +79,4 @@ class Item:
             raise TypeError('Объект должен быть экземпляром класса '
                             'Item или Phone!')
         return True
-
-
-
-
-
 
