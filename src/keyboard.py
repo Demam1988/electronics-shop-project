@@ -3,26 +3,21 @@ from src.item import Item
 
 class MixinLan:
 
-    Language = "EN"
-
-    def __init__(self):
-        self.__language = self.Language
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.__language = "EN"
 
     @property
     def language(self):
-        """ Возвращает атрибут language. """
         return self.__language
 
     def change_lang(self):
-        """ Метод для изменения языка (раскладки клавиатуры). """
-
         if self.__language == 'EN':
             self.__language = 'RU'
         else:
             self.__language = 'EN'
+        return self
 
-        return self.language
 
-
-class Keyboard(Item, MixinLan):
+class Keyboard(MixinLan, Item):
     pass
