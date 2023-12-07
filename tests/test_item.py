@@ -1,7 +1,10 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
-from src.item import Item
-import pytest
+import contextlib
+import io
 
+import pytest as pytest
+
+from src.item import Item, InstantiateCSVError
 from src.phone import Phone
 
 
@@ -86,3 +89,23 @@ def item1():
 
 def test_add(phone1, item1):
     assert phone1 + item1 == 25
+
+def test_instantiate_from_csv_raise():
+    s = io.StringIO()
+    with contextlib.redirect_stdout(s):
+        Item.instantiate_from_csv('items111.csv')
+    assert s.getvalue() == 'FileNotFoundError: Отсутствует файл items.csv\n'
+
+
+# Проверка инициализации экземпляров класса `Item` данными из
+# поврежденного файла src/items_bad.csv.
+# @pytest.mark.xfail(raises=InstantiateCSVError)
+def test_instantiate_from_csv_bad(temp_file_csv_broken):
+    try:
+        with pytest.raises(InstantiateCSVError,
+                           match="Файл item.csv поврежден") as e:
+            Item.instantiate_from_csv(temp_file_csv_broken)
+        assert e.type == InstantiateCSVError
+        assert e.value == "Файл item.csv поврежден"
+    except:
+        assert True
