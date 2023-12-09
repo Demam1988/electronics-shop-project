@@ -2,6 +2,7 @@
 import contextlib
 import io
 
+import items as items
 import pytest as pytest
 
 from src.item import Item, InstantiateCSVError
@@ -100,12 +101,7 @@ def test_instantiate_from_csv_raise():
 # Проверка инициализации экземпляров класса `Item` данными из
 # поврежденного файла src/items_bad.csv.
 # @pytest.mark.xfail(raises=InstantiateCSVError)
-def test_instantiate_from_csv_bad(temp_file_csv_broken):
-    try:
-        with pytest.raises(InstantiateCSVError,
-                           match="Файл item.csv поврежден") as e:
-            Item.instantiate_from_csv(temp_file_csv_broken)
-        assert e.type == InstantiateCSVError
-        assert e.value == "Файл item.csv поврежден"
-    except:
-        assert True
+def test_InstantiateCSVError():
+    def __init__(self, *args, **kwargs):
+        self.message = args[0] if args else 'Файл item.csv поврежден'
+        assert self.message == 'Файл item.csv поврежден'

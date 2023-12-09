@@ -61,7 +61,7 @@ class Item:
         self.price = discoun
 
     @classmethod
-    def instantiate_from_csv(cls, path=PATH_CSV, file_path="..\src\items.csv"):
+    def instantiate_from_csv(cls, path=PATH_CSV, file_path="..\src\item.csv"):
         cls.all = []
         try:
             with open(file_path) as csvfile:
